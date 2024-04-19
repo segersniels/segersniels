@@ -23,7 +23,7 @@ import (
 
 const (
 	host = "localhost"
-	port = "12345"
+	port = "22"
 )
 
 // Just a generic tea.Model to demo terminal information of ssh.

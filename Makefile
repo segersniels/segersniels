@@ -1,6 +1,6 @@
 .PHONY: build clean
 
-BINARY_NAME=hello
+BINARY_NAME=ssh
 BUILD_DIR=bin
 LDFLAGS="-w -s -X main.AppName=$(BINARY_NAME)"
 
