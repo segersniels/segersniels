@@ -56,21 +56,20 @@ func (e model) View() string {
 }
 
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-	width := 80
-	pty, _, _ := s.Pty()
-	vp := viewport.New(width, pty.Window.Height)
+	const width = 78
+	vp := viewport.New(width, 20)
 	vp.Style = lipgloss.NewStyle().
 		BorderStyle(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color("62")).
-		AlignHorizontal(lipgloss.Center)
-
-	renderer, _ := glamour.NewTermRenderer(
-		glamour.WithAutoStyle(),
-		glamour.WithWordWrap(width),
-	)
+		PaddingRight(2)
 
 	// Read from local ./README.md file
 	content, _ := os.ReadFile("./README.md")
+	renderer, _ := glamour.NewTermRenderer(
+		glamour.WithAutoStyle(),
+		glamour.WithWordWrap(width),
+		glamour.WithPreservedNewLines(),
+	)
 	str, _ := renderer.Render(string(content))
 	vp.SetContent(str)
 
