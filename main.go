@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"errors"
+	"io"
 	"net"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -56,6 +58,21 @@ func (m model) View() string {
 	return m.viewport.View()
 }
 
+func fetchRemoteContent(url string) ([]byte, error) {
+	res, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	response, err := io.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	const width = 78
 	vp := viewport.New(width, 20)
@@ -82,14 +99,34 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 		return s
 	}()
 
-	// Read from local ./README.md file
-	content, _ := os.ReadFile("./README.md")
+	var content string
+	url := os.Getenv("README_URL")
+
+	if url != "" {
+		data, err := fetchRemoteContent(url)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		content = string(data)
+	} else {
+		// Read from local ./README.md file
+		data, err := os.ReadFile("./README.md")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		content = string(data)
+	}
+
+	println(content)
+
 	renderer, _ := glamour.NewTermRenderer(
 		glamour.WithStyles(glamourStyle),
 		glamour.WithWordWrap(width),
 		glamour.WithPreservedNewLines(),
 	)
-	str, _ := renderer.Render(string(content))
+	str, _ := renderer.Render(content)
 	vp.SetContent(str)
 
 	m := model{
