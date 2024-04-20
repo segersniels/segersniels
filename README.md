@@ -6,6 +6,6 @@ What I have going on currently:
 
 - Lead Backend Developer at [Delta Investment Tracker](https://delta.app)
 - Developer tool creator: [supdock](https://github.com/segersniels/supdock), [bndl](https://github.com/segersniels/bndl), [propr](https://github.com/segersniels/propr-cli), etc.
-- Maintainer and contributor to [genmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
+- Maintainer and contributor for [genmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
 
 Find more about me [here](https://niels.foo/about).
