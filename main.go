@@ -12,6 +12,7 @@ import (
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/glamour"
+	"github.com/charmbracelet/glamour/ansi"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/log"
 	"github.com/charmbracelet/ssh"
@@ -68,10 +69,19 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 		BorderStyle(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color("62"))
 
+	var glamourStyle = func() ansi.StyleConfig {
+		noColor := ""
+		s := glamour.DarkStyleConfig
+		s.Document.StylePrimitive.Color = &noColor
+		s.CodeBlock.Chroma.Text.Color = &noColor
+		s.CodeBlock.Chroma.Name.Color = &noColor
+		return s
+	}()
+
 	// Read from local ./README.md file
 	content, _ := os.ReadFile("./README.md")
 	renderer, _ := glamour.NewTermRenderer(
-		glamour.WithAutoStyle(),
+		glamour.WithStyles(glamourStyle),
 		glamour.WithWordWrap(width),
 		glamour.WithPreservedNewLines(),
 	)
