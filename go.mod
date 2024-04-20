@@ -1,4 +1,4 @@
-module github.com/segersniels/hello.niels.foo
+module github.com/segersniels/about
 
 go 1.22.2
 
