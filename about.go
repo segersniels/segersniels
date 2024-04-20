@@ -73,6 +73,15 @@ func fetchRemoteContent(url string) ([]byte, error) {
 	return response, nil
 }
 
+func fetchLocalContent(path string) ([]byte, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+
+	return data, nil
+}
+
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	const width = 78
 	vp := viewport.New(width, 20)
@@ -105,13 +114,17 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	if url != "" {
 		data, err := fetchRemoteContent(url)
 		if err != nil {
-			log.Fatal(err)
+			log.Warn("Could not fetch remote content, falling back to local README")
+
+			data, err = fetchLocalContent("./README.md")
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 
 		content = string(data)
 	} else {
-		// Read from local ./README.md file
-		data, err := os.ReadFile("./README.md")
+		data, err := fetchLocalContent("./README.md")
 		if err != nil {
 			log.Fatal(err)
 		}
