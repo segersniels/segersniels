@@ -132,8 +132,6 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 		content = string(data)
 	}
 
-	println(content)
-
 	renderer, _ := glamour.NewTermRenderer(
 		glamour.WithStyles(glamourStyle),
 		glamour.WithWordWrap(width),
