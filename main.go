@@ -58,7 +58,13 @@ func (e model) View() string {
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	const width = 78
 	vp := viewport.New(width, 20)
-	vp.Style = lipgloss.NewStyle().
+
+	// When running a Bubble Tea app over SSH, you shouldn't use the default
+	// lipgloss.NewStyle function.
+	// That function will use the color profile from the os.Stdin, which is the
+	// server, not the client.
+	main := bubbletea.MakeRenderer(s)
+	vp.Style = main.NewStyle().
 		BorderStyle(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color("62"))
 
