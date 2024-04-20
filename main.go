@@ -31,28 +31,28 @@ type model struct {
 	viewport viewport.Model
 }
 
-func (e model) Init() tea.Cmd {
+func (m model) Init() tea.Cmd {
 	return nil
 }
 
-func (e model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "q", "ctrl+c", "esc":
-			return e, tea.Quit
+			return m, tea.Quit
 		default:
 			var cmd tea.Cmd
-			e.viewport, cmd = e.viewport.Update(msg)
-			return e, cmd
+			m.viewport, cmd = m.viewport.Update(msg)
+			return m, cmd
 		}
 	default:
-		return e, nil
+		return m, nil
 	}
 }
 
-func (e model) View() string {
-	return e.viewport.View()
+func (m model) View() string {
+	return m.viewport.View()
 }
 
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
