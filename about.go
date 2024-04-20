@@ -112,9 +112,11 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	url := os.Getenv("README_URL")
 
 	if url != "" {
+		log.Info("Remote README specified", "url", url)
+
 		data, err := fetchRemoteContent(url)
 		if err != nil {
-			log.Warn("Could not fetch remote content, falling back to local README")
+			log.Info("Could not fetch remote content, falling back to local README")
 
 			data, err = fetchLocalContent("./README.md")
 			if err != nil {
