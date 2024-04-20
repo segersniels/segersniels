@@ -69,6 +69,10 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 		BorderStyle(lipgloss.RoundedBorder()).
 		BorderForeground(lipgloss.Color("62"))
 
+	// Override glamour's default style with a custom one to better support light backgrounds.
+	// By default glamour determines the style to use on the terminal based on the
+	// terminal's background color (which is the server in this case). This is not possible over SSH, so we have to
+	// set the style manually.
 	var glamourStyle = func() ansi.StyleConfig {
 		noColor := ""
 		s := glamour.DarkStyleConfig
