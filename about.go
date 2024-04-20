@@ -29,7 +29,6 @@ const (
 	port = "22"
 )
 
-// Just a generic tea.Model to demo terminal information of ssh.
 type model struct {
 	viewport viewport.Model
 }
