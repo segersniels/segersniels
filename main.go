@@ -60,8 +60,7 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	vp := viewport.New(width, 20)
 	vp.Style = lipgloss.NewStyle().
 		BorderStyle(lipgloss.RoundedBorder()).
-		BorderForeground(lipgloss.Color("62")).
-		PaddingRight(2)
+		BorderForeground(lipgloss.Color("62"))
 
 	// Read from local ./README.md file
 	content, _ := os.ReadFile("./README.md")
