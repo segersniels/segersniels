@@ -83,7 +83,7 @@ func fetchLocalContent(path string) ([]byte, error) {
 
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	const width = 78
-	vp := viewport.New(width, 20)
+	vp := viewport.New(width, 24)
 
 	// When running a Bubble Tea app over SSH, you shouldn't use the default
 	// lipgloss.NewStyle function.
