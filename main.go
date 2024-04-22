@@ -82,8 +82,8 @@ func fetchLocalContent(path string) ([]byte, error) {
 }
 
 func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-	const width = 78
-	vp := viewport.New(width, 24)
+	pty, _, _ := s.Pty()
+	vp := viewport.New(pty.Window.Width, pty.Window.Height)
 
 	// When running a Bubble Tea app over SSH, you shouldn't use the default
 	// lipgloss.NewStyle function.
@@ -135,10 +135,14 @@ func teaHandler(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 
 	renderer, _ := glamour.NewTermRenderer(
 		glamour.WithStyles(glamourStyle),
-		glamour.WithWordWrap(width),
+		glamour.WithWordWrap(80), // Arbitrary wrap length (default line width of most editors)
 		glamour.WithPreservedNewLines(),
 	)
 	str, _ := renderer.Render(content)
+
+	// Configure the viewport to match the content width and height.
+	vp.Width = lipgloss.Width(str)
+	vp.Height = lipgloss.Height(str)
 	vp.SetContent(str)
 
 	m := model{
