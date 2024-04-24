@@ -5,7 +5,7 @@ Hey there! 👋 My name is Niels, and I'm a full stack developer based in Belgiu
 What I have going on currently:
 
 - Lead Backend Developer at [Delta Investment Tracker](https://delta.app)
-- Creator and maintainer of developers tools [supdock](https://github.com/segersniels/supdock), [bndl](https://github.com/segersniels/bndl), [propr](https://github.com/segersniels/propr-cli), [genmoji](https://github.com/segersniels/genmoji)
+- Creator and maintainer of developers tools [supdock](https://github.com/segersniels/supdock), [bndl](https://github.com/segersniels/bndl), [propr](https://github.com/segersniels/propr), [genmoji](https://github.com/segersniels/genmoji)
 - Maintainer and contributor for [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
 
 Find more about me [here](https://niels.foo/about).
