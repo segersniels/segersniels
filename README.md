@@ -10,4 +10,4 @@ What I have going on currently:
 
 Find more about me [here](https://niels.foo/about).
 
-> _Fun fact: You can also view this message over SSH by running: `ssh niels.foo`_
+> _Fun fact: You can also view this message over SSH by running: `ssh readme.niels.foo`_
