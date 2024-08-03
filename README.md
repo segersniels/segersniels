@@ -1,6 +1,6 @@
 # Niels Segers
 
-Hey there! 👋 My name is Niels, and I'm a full stack developer based in Belgium and father of two boys. Passionate about developer tooling, sharing knowledge and a keen interest in both frontend and backend technologies.
+Hey there! 👋 My name is Niels and I'm a full stack developer based in Belgium. Passionate about developer tooling, sharing knowledge and a keen interest in both frontend and backend technologies.
 
 What I have going on currently:
 
