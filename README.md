@@ -7,5 +7,3 @@ I mostly work with [TypeScript](https://www.typescriptlang.org/), [React](https:
 When I'm not coding, you'll find me listening to music or building custom keyboards.
 
 Find more about me [here](https://niels.foo/about).
-
-> _Fun fact: You can also view this message over SSH by running: `ssh readme.niels.foo`_
